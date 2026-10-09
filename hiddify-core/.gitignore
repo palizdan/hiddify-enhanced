@@ -16,3 +16,5 @@ data
 node_modules
 *.db
 *.json
+!hiddify-sing-box/protocol/hiddify/dnstt/resolvers_by_country.json
+!hiddify-sing-box/replace/tailscale/net/dnsfallback/dns-fallback-servers.json
