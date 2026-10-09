@@ -1,0 +1,16 @@
+app_id: 82C1A1D7-AC8B-45A0-9012-6CF32B9A552E
+publisher: Hiddify Enhanced
+publisher_url: https://github.com/hiddify/hiddify-app
+display_name: Hiddify Enhanced
+create_desktop_icon: true
+install_dir_name: "{autopf64}\\Hiddify Enhanced"
+setup_icon_file: windows\runner\resources\app_icon.ico
+locales:
+  - ar
+  - en
+  - es
+  - fr
+  - pt
+  - ru
+  - tr
+script_template: inno_setup.sas

@@ -1,0 +1,53 @@
+name: Build Hiddify Enhanced for macOS
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build unsigned macOS packages
+    runs-on: macos-15
+    timeout-minutes: 120
+    env:
+      PATH: /Users/runner/.pub-cache/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2.21.0
+        with:
+          flutter-version: '3.38.5'
+          channel: stable
+          cache: true
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.26.3'
+          cache-dependency-path: hiddify-core/go.sum
+
+      - name: Install packaging tools
+        run: make macos-install-deps
+
+      - name: Prepare Flutter app
+        run: make macos-prepare
+
+      - name: Build the patched universal Hiddify Core
+        run: make -C hiddify-core macos
+
+      - name: Package app
+        run: make macos-release
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v6
+        with:
+          name: Hiddify-Enhanced-macOS-unsigned
+          path: |
+            dist/**/*.dmg
+            dist/**/*.pkg
+          if-no-files-found: error
+          retention-days: 7

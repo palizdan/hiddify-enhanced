@@ -1,0 +1,21 @@
+display_name: Hiddify Enhanced
+publisher_display_name: Hiddify Enhanced
+identity_name: HiddifyEnhanced.HiddifyEnhanced
+msix_version: 5.0.0.0
+logo_path: windows\runner\resources\app_icon.ico
+capabilities: internetClient, internetClientServer, privateNetworkClientServer
+languages: ar, en-us, es-es, fa-ir, fr-fr, id-id, pt-br, ru-ru, tr-tr, zh-cn, zh-tw
+protocol_activation: hiddify-enhanced
+execution_alias: hiddify-enhanced
+certificate_path: windows\sign.pfx
+certificate_password:
+publisher: CN=Hiddify-Enhanced-Development
+install_certificate: "false"
+enable_at_startup: "true"
+startup_task:
+  parameters: --autostart
+
+# For testing with a self-signed certificate
+# publisher: CN=Hiddify-Test
+# certificate_password: "1234"
+# install_certificate: "true"
